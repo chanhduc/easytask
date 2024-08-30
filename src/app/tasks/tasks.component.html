@@ -1,0 +1,41 @@
+<section id="user">
+    <header>
+        <h2>{{ user }}'s Tasks</h2>
+        <menu>
+            @if (!isAddingTask) {
+              <button (click)="onStartAddTask()">Add Task</button>
+            }
+
+      
+        
+        </menu>
+        
+    </header>
+    <section>
+      <input type="checkbox" id="showCompleteTask" (click)="onShowCompleteTasks()" [checked]="isShowCompleteTasks"/> <label for="showCompleteTask">Show Complete Tasks</label>
+    </section>
+    @if (isAddingTask) {
+        <app-new-task [userId]="userId" (close)="onNewTaskClosed()" (addTask)="onNewTaskAdded()" />
+    }
+    @if (selectedUserCompleteTasks.length === 0 && selectedUserIncompleteTasks.length === 0) {
+        <p>No tasks found</p>
+    }@else {
+
+      <ul id="tasks">
+        @for(task of selectedUserIncompleteTasks; track task.id) {
+          <li>
+              <app-task [task]="task"></app-task>
+          </li>
+        }
+        @if (isShowCompleteTasks) {
+          @for(task of selectedUserCompleteTasks; track task.id) {
+            <li>
+                <app-task [task]="task"></app-task>
+            </li>
+          }
+        }
+        
+      </ul>
+    }
+</section>
+

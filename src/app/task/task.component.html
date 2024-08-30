@@ -1,0 +1,14 @@
+<app-card>
+    <article>
+        @if (!task().completed) {
+        <h3>{{ task().title }}</h3>
+        <p>{{ task().summary }}</p>
+        <p>{{ task().dueDate | date: 'fullDate' }}</p>
+        <p class="actions">
+          <button (click)="onCompleteClick()">Complete</button>
+        </p>
+        } @else {
+        <h3>☑️ {{ task().title }}</h3>
+        }
+    </article>
+</app-card>
