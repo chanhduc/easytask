@@ -1,2 +1,2 @@
-# Esay Task
+# Easy Task
 
